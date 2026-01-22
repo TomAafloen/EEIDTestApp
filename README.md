@@ -22,7 +22,7 @@ A simple single-page application to test OIDC authentication with Microsoft Entr
    - **Supported account types**: Accounts in this organizational directory only
    - **Redirect URI**: 
      - Platform: **Single-page application (SPA)**
-     - URI: `http://localhost:8086`
+     - URI: `https://did.tomdemo.se/EEIDTestApp/`
    - Click **Register**
 
 5. After registration, note down:
@@ -31,7 +31,7 @@ A simple single-page application to test OIDC authentication with Microsoft Entr
    - Your tenant domain (e.g., `yourtenantname.ciamlogin.com`)
 
 6. Under **Authentication** → **Single-page application**:
-   - Ensure `http://localhost:8086` is listed
+   - Ensure `https://did.tomdemo.se/EEIDTestApp/` is listed
    - Check **ID tokens** (for implicit grant - optional)
    - Save changes
 
@@ -51,23 +51,32 @@ const msalConfig = {
     auth: {
         clientId: "YOUR_CLIENT_ID_HERE",           // Replace with your Application (client) ID
         authority: "https://YOUR_TENANT_NAME.ciamlogin.com/",  // Replace with your tenant
-        redirectUri: "http://localhost:8086"
+        redirectUri: "https://did.tomdemo.se/EEIDTestApp/"
     },
     // ... rest of config
 };
 ```
 
-### 3. Run Locally
+### 3. Access the Application
 
-You need a local web server (not just opening the HTML file directly due to CORS).
+The application is hosted on GitHub Pages at: **https://did.tomdemo.se/EEIDTestApp/**
+
+### 4. Test the Application
+
+1. Open browser to `https://did.tomdemo.se/EEIDTestApp/`
+2. Click **Sign In** button
+3. You'll be redirected to Entra External ID login
+4. After signing in, you'll see all your ID token claims
+5. Click **Get Access Token** to retrieve an access token
+
+## Local Development
+
+If you want to run locally for development:
 
 **Option 1: Python**
 ```bash
 # Python 3
 python -m http.server 8086
-
-# Python 2
-python -m SimpleHTTPServer 8086
 ```
 
 **Option 2: Node.js (npx)**
@@ -75,36 +84,24 @@ python -m SimpleHTTPServer 8086
 npx http-server -p 8086
 ```
 
-**Option 3: PHP**
-```bash
-php -S localhost:8086
-```
+**Note:** For local development, add `http://localhost:8086` as an additional redirect URI in your Entra app registration and update `config.js` accordingly.
 
-**Option 4: VS Code Live Server Extension**
-- Install "Live Server" extension
-- Right-click `index.html` → "Open with Live Server"
-- Change port to 8086 in settings if needed
+## Deployment
 
-### 4. Test the Application
+### Current Deployment
 
-1. Open browser to `http://localhost:8086`
-2. Click **Sign In** button
-3. You'll be redirected to Entra External ID login
-4. After signing in, you'll see all your ID token claims
-5. Click **Get Access Token** to retrieve an access token
+This application is deployed on **GitHub Pages** with a custom domain: **https://did.tomdemo.se/EEIDTestApp/**
 
-## Deployment Options
+### Deploying to Your Own GitHub Pages
 
-### GitHub Pages
-
-1. Create a repository on GitHub
-2. Push these files to the repo
+1. Fork or create your own repository
+2. Update `config.js` with your Entra External ID tenant details and redirect URI
 3. Go to **Settings** → **Pages**
-4. Select branch and folder
-5. Update `redirectUri` in `config.js` to your GitHub Pages URL (e.g., `https://yourusername.github.io/repo-name/`)
-6. Add the GitHub Pages URL as a redirect URI in your Entra app registration
+4. Select branch (main) and root folder
+5. Optional: Configure a custom domain
+6. Add your GitHub Pages URL as a redirect URI in your Entra app registration
 
-### Azure Static Web Apps
+### Alternative: Azure Static Web Apps
 
 1. Push code to GitHub
 2. Create an Azure Static Web App resource
