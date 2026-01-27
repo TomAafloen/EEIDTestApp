@@ -1,8 +1,8 @@
 // MSAL Configuration for Entra External ID
 const msalConfig = {
     auth: {
-        clientId: "319a4c5f-2ced-4711-a4bb-5a416af16569", // Application (client) ID from Azure portal
-        authority: "https://vccextidqa.ciamlogin.com/", // Your External ID tenant
+        clientId: "db73f476-d035-483c-a298-bd7f40967275", // Application (client) ID from Azure portal
+        authority: "https://doeeid.onmicrosoft.com/", // Your External ID tenant
         redirectUri: "https://did.tomdemo.se/EEIDTestApp/", // Must match the redirect URI registered in Azure
         navigateToLoginRequestUrl: true
     },
