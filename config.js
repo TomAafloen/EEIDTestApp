@@ -2,7 +2,7 @@
 const msalConfig = {
     auth: {
         clientId: "db73f476-d035-483c-a298-bd7f40967275", // Application (client) ID from Azure portal
-        authority: "https://doeeid.onmicrosoft.com/", // Your External ID tenant
+        authority: "https://doeeid.ciamlogin.com/", // Your External ID tenant
         redirectUri: "https://did.tomdemo.se/EEIDTestApp/", // Must match the redirect URI registered in Azure
         navigateToLoginRequestUrl: true
     },
